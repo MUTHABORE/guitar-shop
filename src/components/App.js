@@ -13,18 +13,18 @@ const App = () => {
 				<Header />
 				<main className="main app__main center">
 
-				<Switch>
-						<Redirect from="/" to="/catalog" exact />
+					<Switch>
+							<Redirect from="/" to="/catalog" exact />
 
-            <Route path="/catalog" exact>
-              <Catalog />
-            </Route>
+							<Route path="/catalog" exact>
+								<Catalog />
+							</Route>
 
-            <Route path="/basket" exact>
-              <Basket />
-            </Route>
+							<Route path="/basket" exact>
+								<Basket />
+							</Route>
 
-				</Switch>
+					</Switch>
 
 				</main>
 
