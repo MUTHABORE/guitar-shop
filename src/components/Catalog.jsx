@@ -1,26 +1,31 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {withCatalog} from '../hocs/with-catalog';
 
-import guitarImage from '../images/chesterBass.png';
+import guitarImage from '../images/electro.png';
 
 import Breadcrumbs from './Breadcrumbs';
+import Popup from './Popup';
 import Card from './Card';
 import Filter from './Filter';
 import Sort from './Sort';
 
-const Catalog = () => {
+
+const Catalog = (props) => {
+	const {guitarsToView} = props;
+	console.log(props, guitarsToView)
   return (
 		<div className="catalog">
 			<h2 className="main__title">Каталог гитар</h2>
-			<Breadcrumbs />
-			{/* <ol className="breadcrumbs">
-				<li className="breadcrumbs__item">
-					<a className="breadcrumbs__link" href="#top">Главная</a>
-				</li>
-				<li className="breadcrumbs__item">
-					<a className="breadcrumbs__link" href="#top">Каталог</a>
-				</li>
-			</ol> */}
+			<Breadcrumbs path={[
+				{
+					name: `Главная`,
+				},
+				{
+					name: `Каталог`,
+				}
+				]}
+			/>
 
 			<Filter />
 
@@ -28,15 +33,11 @@ const Catalog = () => {
 				<Sort />
 
 				<ul className="goods__list">
-					<Card />
-					<Card />
-					<Card />
-					<Card />
-					<Card />
-					<Card />
-					<Card />
-					<Card />
-					<Card />
+					{
+						guitarsToView.map((guitar) => {
+							return <Card guitar={guitar} />
+						})
+					}
 				</ul>
 
 				<ol className="pagination">
@@ -47,37 +48,13 @@ const Catalog = () => {
 					<li className="pagination__page pagination__page--next">Далее</li>
 				</ol>
 
-				<section className="popup__overlay">
-					{/* <div className="popup popup--card">
-						<button className="popup__button-cross"></button>
-						<p className="popup__title">Добавить товар в корзину</p>
 
-						<img className="popup__guitar-img" src={guitarImage} alt="Фотография гитары" />
-						
-						<div className="popup__guitar-info">
-							<p className="popup__guitar-title">Гитара Честер bass</p>
-							<p className="popup__guitar-article">Артикул: SO757575</p>
-							<p className="popup__guitar-strings">Электрогитара, 6 струнная</p>
-							<p className="popup__guitar-price">Цена: 17 500 ₽</p>
-						</div>
+				{/* <Popup /> */}
 
-						<button className="popup__button-add" type="button">Добавить в корзину</button>
-
-					</div> */}
-
-					<div className="popup popup--success">
-						<button className="popup__button-cross"></button>
-						<p className="popup__title">Товар успешно добавлен в корзину</p>
-						<div className="popup__buttons-container">
-							<Link className="popup__basket-link" to="/basket">Перейти в корзину</Link>
-							<button className="popup__resume-shopping" type="button">Продолжить покупки</button>
-						</div>
-					</div>
-				</section>
 			</section>
 
 		</div>
   )
 }
 
-export default Catalog;
+export default withCatalog(Catalog);

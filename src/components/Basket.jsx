@@ -1,14 +1,27 @@
 import React from 'react';
 
-import guitarImage from '../images/chesterBass.png';
+import guitarImage from '../images/electro.png';
 
 import Breadcrumbs from './Breadcrumbs';
+import PopupBasket from './Popup-basket';
 
 const Basket = () => {
   return (
 		<div className="basket">
       <h2 className="basket__title">Корзина</h2>
-      <Breadcrumbs />
+      <Breadcrumbs path={[
+				{
+					name: `Главная`,
+				},
+				{
+					name: `Каталог`,
+          link: `/catalog`
+				},
+        {
+					name: `Оформляем`,
+				}
+				]}
+			/>
       <ul className="basket__goods">
         <li className="basket__item">
           <button className="basket__item-button-cross"></button>
@@ -60,6 +73,8 @@ const Basket = () => {
 					<button className="basket__total-price-submit" type="button">Оформить заказ</button>
 				</div>
 			</div>
+
+      {/* <PopupBasket /> */}
     </div>
   )
 }
