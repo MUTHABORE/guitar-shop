@@ -9,11 +9,13 @@ import Popup from './Popup';
 import Card from './Card';
 import Filter from './Filter';
 import Sort from './Sort';
+import Pagination from './Pagination';
 
 
 const Catalog = (props) => {
-	const {guitarsToView} = props;
-	console.log(props, guitarsToView)
+	const {guitarsToView, filteredGuitars, page, onPageChange, minPrice, maxPrice, onGuitarsSortChange, onGuitarsSortDirectionChange, sortType, sortDirection, onGuitarsFilterMinPriceChange, onGuitarsFilterMaxPriceChange, filterMinPrice, filterMaxPrice, onFilterMinPriceBlur, onFilterMaxPriceBlur, onFilterTypeSelect, onFilterStringsSelect, filterType, filterStrings, availableStrings} = props;
+	
+	console.log(guitarsToView)
   return (
 		<div className="catalog">
 			<h2 className="main__title">Каталог гитар</h2>
@@ -27,26 +29,20 @@ const Catalog = (props) => {
 				]}
 			/>
 
-			<Filter />
+			<Filter minPrice={minPrice} maxPrice={maxPrice} onGuitarsFilterMinPriceChange={onGuitarsFilterMinPriceChange} onGuitarsFilterMaxPriceChange={onGuitarsFilterMaxPriceChange} filterMinPrice={filterMinPrice} filterMaxPrice={filterMaxPrice} onFilterMinPriceBlur={onFilterMinPriceBlur} onFilterMaxPriceBlur={onFilterMaxPriceBlur} onFilterTypeSelect={onFilterTypeSelect} onFilterStringsSelect={onFilterStringsSelect} filterType={filterType} filterStrings={filterStrings} availableStrings={availableStrings} />
 
 			<section className="goods">
-				<Sort />
+				<Sort onGuitarsSortChange={onGuitarsSortChange} onGuitarsSortDirectionChange={onGuitarsSortDirectionChange} sortType={sortType} sortDirection={sortDirection} />
 
 				<ul className="goods__list">
 					{
-						guitarsToView.map((guitar) => {
-							return <Card guitar={guitar} />
+						guitarsToView.map((guitar, i) => {
+							return <Card guitar={guitar} i={i}/>
 						})
 					}
 				</ul>
 
-				<ol className="pagination">
-					<li className="pagination__page pagination__page--active">1</li>
-					<li className="pagination__page">2</li>
-					<li className="pagination__page" disabled>…</li>
-					<li className="pagination__page">7</li>
-					<li className="pagination__page pagination__page--next">Далее</li>
-				</ol>
+				<Pagination guitars={filteredGuitars} page={page} onPageChange={onPageChange} />
 
 
 				{/* <Popup /> */}

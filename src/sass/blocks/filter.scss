@@ -113,10 +113,15 @@
 	}
 
 	&--disabled {
+		cursor: not-allowed;
 		color: #DDDDDD;
 
 		&::before {
 			background: #F7F3F3;
+		}
+
+		&:hover::before {
+			border: 0.7px solid #9F9E9E;
 		}
 	}
 

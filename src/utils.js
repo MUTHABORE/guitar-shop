@@ -1,11 +1,11 @@
-const sorting = (arr, field, type = `down`) => {
-	arr.sort(function (a, b) {
-		if (a.field > b.field) {
-			return 1;
-		}
-		if (a.field < b.field) {
-			return -1;
-		}
-		return 0;
-	});
+export const findMinMaxPrice = (arr, type) => {
+	let prices = [];
+	arr.map((guitar, index) => {
+		prices[index] = guitar.price;
+	})
+	if (type === `min`) {
+		return(Math.min(...prices));
+	} else if (type === `max`) {
+		return(Math.max(...prices));
+	}
 };

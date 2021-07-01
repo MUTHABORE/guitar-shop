@@ -1,20 +1,17 @@
 import React from 'react';
 
-import guitarImage from '../images/electro.png';
-
 const Card = (props) => {
-	const {guitar} = props;
+	const {guitar, i} = props;
   return (
-		<li className="card">
-			<img className="card__img" src={`../src/images/${guitar.type}.png`} alt={`Фотография ${guitar.name}`} />
-			{/* <img className="card__img" src={guitarImage} alt={`Фотография ${guitar.name}`} /> */}
+		<li key={i} className="card">
+			<img className="card__img" src={`./images/${guitar.type}.png`} alt={`Фотография ${guitar.name}`} />
 			<div className="card__rating">
 				<ol className="card__stars-rating">
 					<li className="card__star"></li>
 					<li className="card__star"></li>
 					<li className="card__star"></li>
 					<li className="card__star"></li>
-					<li className="card__star"></li>
+					<li className="card__star card__star--off"></li>
 				</ol>
 				<p className="card__reviews">{guitar.reviews}</p>
 			</div>
