@@ -7,10 +7,6 @@
 	height: 100vh;
 	width: 100vw;
 	
-	// WARNING! DONT DELETE BEFORE DECODING
-	padding-right: 17px;
-	// WARNING! DONT DELETE BEFORE DECODING
-	
 	justify-content: center;
 	align-items: center;
 	background-color: rgba(0, 0, 0, 0.3);
@@ -150,6 +146,8 @@
 }
 
 .popup__resume-shopping {
+	display: inline-block;
+
 	margin: 0 18px;
 	padding: 0 11px;
 

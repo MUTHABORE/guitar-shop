@@ -1,7 +1,9 @@
 import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
+import {addGuitarAction, changeGuitarAmountAction} from '../store/actions';
 import {guitars, typeOfStrings} from '../mocks';
-import {findMinMaxPrice} from '../utils';
 import {MAX_PAGE_GUITARS} from '../const';
 
 export const withCatalog = (Component) => {
@@ -12,6 +14,12 @@ export const withCatalog = (Component) => {
 			this.state = {
 				page: 1,
 				guitars: guitars,
+				selectedGuitar: ``,
+
+				basket: [],
+
+				isPopupOpen: false,
+				isPopupSuccessOpen: false,
 
 				sortType: ``,
 				sortDirection: ``,
@@ -37,6 +45,10 @@ export const withCatalog = (Component) => {
 			this.onFilterStringsSelect = this.onFilterStringsSelect.bind(this);
 			this.getAvailableStrings = this.getAvailableStrings.bind(this);
 			this.onPageChange = this.onPageChange.bind(this);
+			this.onPopupOpenClick = this.onPopupOpenClick.bind(this);
+			this.onAddToBasketClick = this.onAddToBasketClick.bind(this);
+			this.onClosePopup = this.onClosePopup.bind(this);
+			this.onClosePopupKeydown = this.onClosePopupKeydown.bind(this);
 		}
 
 		guitarsSort(type) {
@@ -50,7 +62,9 @@ export const withCatalog = (Component) => {
 				return 0;
 			}).slice();
 
-			this.state.sortDirection === `down` ? sortedGuitars = sortedGuitars.reverse() : sortedGuitars = sortedGuitars;
+			this.state.sortDirection === `down` && (
+				sortedGuitars = sortedGuitars.reverse()
+			)
 
 			this.setState({guitars: sortedGuitars});
 
@@ -107,7 +121,7 @@ export const withCatalog = (Component) => {
 				return true;
 			});
 
-			this.setState({guitars: filteredGuitars});
+			this.setState({guitars: filteredGuitars, page: 1,});
 		}
 
 		onGuitarsFilterMinPriceChange(evt) {
@@ -115,6 +129,7 @@ export const withCatalog = (Component) => {
 				this.setState({filter: Object.assign(
 					{}, this.state.filter, {
 						minPrice: evt.target.value,
+						page: 1,
 					}
 				)})
 			return;
@@ -125,6 +140,7 @@ export const withCatalog = (Component) => {
 				this.setState({filter: Object.assign(
 					{}, this.state.filter, {
 						maxPrice: evt.target.value,
+						page: 1,
 					}
 				)})
 			return;
@@ -235,12 +251,62 @@ export const withCatalog = (Component) => {
 		}
 
 		onPageChange(evt) {
-			const value = evt.target.value;
-			console.log(value)
+			this.setState({page: evt.target.value});
+		}
+
+		onPopupOpenClick(evt, guitar) {
+			document.addEventListener(`keydown`, this.onClosePopupKeydown);
+			document.documentElement.style.overflow = `hidden`;
+
+			this.setState({
+				selectedGuitar: guitar,
+				isPopupOpen: true,
+			})
+		}
+
+		onClosePopupKeydown(evt) {
+			document.removeEventListener(`keydown`, this.onClosePopupKeydown);
+			document.documentElement.style.overflow = `auto`;
+
+			if (evt.key === `Escape`) {
+				this.setState({
+					isPopupSuccessOpen: false,
+					isPopupOpen: false,
+				})
+			}
+		}
+
+		onPopupCloseClick(evt, guitar) {
+			document.removeEventListener(`keydown`, this.onClosePopupKeydown);
+			document.documentElement.style.overflow = `auto`;
+
+			this.setState({
+				selectedGuitar: guitar,
+				isPopupSuccessOpen: false,
+				isPopupOpen: false,
+			})
+		}
+		
+		onAddToBasketClick(evt, guitarArticle) {
+			this.props.addGuitar(guitarArticle);
+			this.setState({
+				isPopupSuccessOpen: true,
+			})
+		}
+
+		onClosePopup(evt, preventDefault = true) {
+			preventDefault && (evt.preventDefault());
+
+			document.removeEventListener(`keydown`, this.onClosePopupKeydown);
+			document.documentElement.style.overflow = `auto`;
+
+			this.setState({
+				isPopupOpen: false,
+				isPopupSuccessOpen: false,
+			})
 		}
 	
 		render() {
-
 			return(
 				<Component
 					onGuitarsSortChange={this.onGuitarsSortChange}
@@ -262,9 +328,35 @@ export const withCatalog = (Component) => {
 					availableStrings={this.state.filter.availableStrings}
 					page={this.state.page}
 					onPageChange={this.onPageChange}
+					isPopupOpen={this.state.isPopupOpen}
+					isPopupSuccessOpen={this.state.isPopupSuccessOpen}
+					onPopupOpenClick={this.onPopupOpenClick}
+					onAddToBasketClick={this.onAddToBasketClick}
+					selectedGuitar={this.state.selectedGuitar}
+					onClosePopup={this.onClosePopup}
 				/>
 		)}
 	}
+	
+	WithCatalog.propTypes = {
+		addGuitar: PropTypes.func.isRequired,
+		changeGuitarAmount: PropTypes.func.isRequired,
+		guitars: PropTypes.object.isRequired,
+	};
 
-	return WithCatalog;
-}
+
+	const mapStateToProps = ({guitars}) => ({
+		guitars,
+	});
+	
+	const mapDispatchToProps = (dispatch) => ({
+		addGuitar(guitar) {
+			dispatch(addGuitarAction(guitar));
+		},
+		changeGuitarAmount(guitar) {
+			dispatch(changeGuitarAmountAction(guitar));
+		},
+	});
+
+	return connect(mapStateToProps, mapDispatchToProps)(WithCatalog);
+};

@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Card = (props) => {
-	const {guitar, i} = props;
-  return (
-		<li key={i} className="card">
+	const {guitar, onPopupOpenClick} = props;
+	return (
+		<li className="card">
 			<img className="card__img" src={`./images/${guitar.type}.png`} alt={`Фотография ${guitar.name}`} />
 			<div className="card__rating">
 				<ol className="card__stars-rating">
@@ -20,11 +21,16 @@ const Card = (props) => {
 				<p className="card__info-text">{`${guitar.price} ₽`}</p>
 			</div>
 			<div className="card__options">
-				<button className="card__button" type="button">Подробнее</button>
-				<button className="card__button card__button--cart" type="button"> Купить</button>
+				<a href="#top" className="card__button" type="button">Подробнее</a>
+				<button className="card__button card__button--cart" type="button" onClick={onPopupOpenClick}> Купить</button>
 			</div>
 		</li>
-  )
+	)
 }
+
+Card.propTypes = {
+	guitar: PropTypes.object.isRequired,
+	onPopupOpenClick: PropTypes.func.isRequired,
+};
 
 export default Card;

@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 
 import {MAX_PAGE_GUITARS} from '../const';
 
@@ -7,24 +8,57 @@ export const withPagination = (Component) => {
 		constructor(props) {
 			super(props);
 
+			this.guitarsLength = Math.ceil(this.props.guitars.length / MAX_PAGE_GUITARS);
+
 			this.state = {
-				pagesLength: Math.ceil(this.props.guitars.length / MAX_PAGE_GUITARS),
 			};
+
+			this.getPaginationValues = this.getPaginationValues.bind(this);
 		}
 
+	getPaginationValues() {
+		console.log(this.guitarsLength);
+		let values = [];
+		
+		values[0] = `1`;
+		
+		if (this.props.page > 2 & this.props.page - 1 !== 2) {
+			values.push(`…`);
+		}
+		
+		for(let i = this.props.page - 1; i < this.props.page + 2; i++) {
+			if (i > 1 && i < this.guitarsLength) {
+				values.push(i.toString());
+			}
+		}
+		
+		if (this.props.page < this.guitarsLength - 1) {
+			values.push(`…`);
+		}
+		
+		values.push(this.guitarsLength.toString());
+		
+		console.log(values)
 
-	
-		render() {
-			console.log(this.props)
-			console.log(this.props.guitars.length, Math.ceil(this.props.guitars.length / MAX_PAGE_GUITARS))
-			return(
-				<Component
-					page={this.props.page}
-					onPageChange={this.props.onPageChange}
-					pagesLength={this.state.pagesLength}
-				/>
+		return values;
+	}
+
+	render() {
+		return(
+			<Component
+				page={this.props.page}
+				onPageChange={this.props.onPageChange}
+				pagesLength={this.guitarsLength}
+				getPaginationValues={this.getPaginationValues}
+			/>
 		)}
 	}
+
+	WithPagination.propTypes = {
+		guitars: PropTypes.array.isRequired,
+		onPageChange: PropTypes.func.isRequired,
+		page: PropTypes.number.isRequired,
+	};
 
 	return WithPagination;
 }

@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Sort = (props) => {
 	const {onGuitarsSortChange, onGuitarsSortDirectionChange, sortType, sortDirection} = props;
-  return (
+	return (
 		<div className="sort">
 			<div className="sort__type">
 				<p className="sort__type-title">Сортировать:</p>
@@ -24,7 +25,14 @@ const Sort = (props) => {
 				</label>
 			</div>
 		</div>
-  )
+	)
 }
+
+Sort.propTypes = {
+	onGuitarsSortChange: PropTypes.func.isRequired,
+	onGuitarsSortDirectionChange: PropTypes.func.isRequired,
+	sortType: PropTypes.string.isRequired,
+	sortDirection: PropTypes.string.isRequired,
+};
 
 export default Sort;

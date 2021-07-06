@@ -9,7 +9,7 @@
 	box-sizing: border-box;
 
 	&:nth-child(3n+3) {
-    margin-right: 0;
+		margin-right: 0;
 	}
 }
 
@@ -87,6 +87,7 @@
 	line-height: 19px;
 	letter-spacing: 0.5px;
 	color: #FFFFFF;
+	text-align: center;
 
 	background-color: rgba(193, 193, 193, 1);
 

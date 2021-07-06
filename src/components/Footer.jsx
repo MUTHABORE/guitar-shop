@@ -3,7 +3,7 @@ import React from 'react';
 import Logo from './Logo';
 
 const Footer = () => {
-  return (
+	return (
 		<footer className="footer">
 			<div className="footer__wrapper center">
 
@@ -99,7 +99,7 @@ const Footer = () => {
 				</ul>
 			</div>
 		</footer>
-  )
+	)
 }
 
 export default Footer;

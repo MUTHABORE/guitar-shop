@@ -9,11 +9,11 @@
 		display: block;
 		position: absolute;
 		
-    height: 298px;
-    width: 894px;
+		height: 298px;
+		width: 894px;
 		
-    top: -89px;
-    left: calc(50% - 584px);
+		top: -89px;
+		left: calc(50% - 584px);
 		
 		transform: rotate(180deg);
 		
@@ -28,10 +28,10 @@
 		display: block;
 		position: absolute;
 
-    height: 6px;
-    width: 100%;
+		height: 6px;
+		width: 100%;
 
-    top: -16px;
+		top: -16px;
 
 		background-color: #3F3F3F;
 	}
@@ -71,7 +71,7 @@
 
 	&--contacts {
 		margin-top: 12px;
-    line-height: 35px;
+		line-height: 35px;
 	}
 }
 
@@ -85,8 +85,8 @@
 
 	&--contacts {
 		margin: 0;
-    margin-left: 78px;
-    width: 139px;
+		margin-left: 78px;
+		width: 139px;
 	}
 }
 

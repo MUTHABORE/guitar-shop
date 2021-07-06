@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Filter = (props) => {
-	const {onGuitarsFilterMinPriceChange, onGuitarsFilterMaxPriceChange, onFilterMinPriceBlur, onFilterMaxPriceBlur, filterMinPrice, filterMaxPrice, onFilterTypeSelect, onFilterStringsSelect, filterType, filterStrings, availableStrings} = props;
-  return (
+	const {onGuitarsFilterMinPriceChange, onGuitarsFilterMaxPriceChange, onFilterMinPriceBlur, onFilterMaxPriceBlur, filterMinPrice, filterMaxPrice, onFilterTypeSelect, onFilterStringsSelect, availableStrings} = props;
+	return (
 		<ul className="filter">
 			<li className="filter__item">
 				<h3 className="filter__title">Фильтр</h3>
@@ -21,22 +22,40 @@ const Filter = (props) => {
 
 					<li>
 						<label>
-							<input className="visually-hidden" value="acoustic" type="checkbox" name="guitar-type" onChange={onFilterTypeSelect} />
-							<p className={`filter__checkbox${filterType.has(`acoustic`) ? ` filter__checkbox--active` : ``}`}>Акустические гитары</p>
+							<input
+								className="filter__checkbox-input visually-hidden"
+								value="acoustic"
+								type="checkbox"
+								name="guitar-type"
+								onChange={onFilterTypeSelect}
+							/>
+							<p className="filter__checkbox">Акустические гитары</p>
 						</label>
 					</li>
 
 					<li>
 						<label>
-							<input className="visually-hidden" value="electro" type="checkbox" name="guitar-type" onChange={onFilterTypeSelect} />
-							<p className={`filter__checkbox${filterType.has(`electro`) ? ` filter__checkbox--active` : ``}`}>Электрогитары</p>
+							<input
+								className="filter__checkbox-input visually-hidden"
+								value="electro"
+								type="checkbox"
+								name="guitar-type"
+								onChange={onFilterTypeSelect}
+							/>
+							<p className="filter__checkbox">Электрогитары</p>
 						</label>
 					</li>
 
 					<li>
 						<label>
-							<input className="visually-hidden" value="ukulele" type="checkbox" name="guitar-type" onChange={onFilterTypeSelect} />
-							<p className={`filter__checkbox${filterType.has(`ukulele`) ? ` filter__checkbox--active` : ``}`}>Укулеле</p>
+							<input
+								className="filter__checkbox-input visually-hidden"
+								value="ukulele"
+								type="checkbox"
+								name="guitar-type"
+								onChange={onFilterTypeSelect}
+							/>
+							<p className="filter__checkbox">Укулеле</p>
 						</label>
 					</li>
 
@@ -50,13 +69,13 @@ const Filter = (props) => {
 						<label>
 							<input
 								disabled={availableStrings.has(`4`) ? `` : `disabled`}
-								className="visually-hidden"
+								className="filter__checkbox-input visually-hidden"
 								type="checkbox"
 								name="guitar-strings"
 								value="4"
 								onChange={onFilterStringsSelect}
 							/>
-							<p className={`filter__checkbox${filterStrings.has(`4`) ? ` filter__checkbox--active` : ``}${availableStrings.has(`4`) ? `` : ` filter__checkbox--disabled`}`}>4</p>
+							<p className="filter__checkbox">4</p>
 						</label>
 					</li>
 
@@ -64,13 +83,13 @@ const Filter = (props) => {
 						<label>
 							<input
 								disabled={availableStrings.has(`6`) ? `` : `disabled`}
-								className="visually-hidden"
+								className="filter__checkbox-input visually-hidden"
 								type="checkbox"
 								name="guitar-strings"
 								value="6"
 								onChange={onFilterStringsSelect}
 							/>
-							<p className={`filter__checkbox${filterStrings.has(`6`) ? ` filter__checkbox--active` : ``}${availableStrings.has(`6`) ? `` : ` filter__checkbox--disabled`}`}>6</p>
+							<p className="filter__checkbox">6</p>
 						</label>
 					</li>
 
@@ -78,13 +97,13 @@ const Filter = (props) => {
 						<label>
 							<input
 								disabled={availableStrings.has(`7`) ? `` : `disabled`}
-								className="visually-hidden"
+								className="filter__checkbox-input visually-hidden"
 								type="checkbox"
 								name="guitar-strings"
 								value="7"
 								onChange={onFilterStringsSelect}
 							/>
-							<p className={`filter__checkbox${filterStrings.has(`7`) ? ` filter__checkbox--active` : ``}${availableStrings.has(`7`) ? `` : ` filter__checkbox--disabled`}`}>7</p>
+							<p className="filter__checkbox">7</p>
 						</label>
 					</li>
 
@@ -92,21 +111,33 @@ const Filter = (props) => {
 						<label>
 							<input
 								disabled={availableStrings.has(`12`) ? `` : `disabled`}
-								className="visually-hidden"
+								className="filter__checkbox-input visually-hidden"
 								type="checkbox"
 								name="guitar-strings"
 								value="12"
 								onChange={onFilterStringsSelect}
 							/>
-							<p className={`filter__checkbox${filterStrings.has(`12`) ? ` filter__checkbox--active` : ``}${availableStrings.has(`12`) ? `` : ` filter__checkbox--disabled`}`}>12</p>
+							<p className="filter__checkbox">12</p>
 						</label>
 					</li>
 
 				</ul>
 			</li>
 		</ul>
-  )
-}
+	)
+};
+
+Filter.propTypes = {
+	onGuitarsFilterMinPriceChange: PropTypes.func.isRequired,
+	onGuitarsFilterMaxPriceChange: PropTypes.func.isRequired,
+	onFilterMinPriceBlur: PropTypes.func.isRequired,
+	onFilterMaxPriceBlur: PropTypes.func.isRequired,
+	filterMinPrice: PropTypes.string.isRequired,
+	filterMaxPrice: PropTypes.string.isRequired,
+	onFilterTypeSelect: PropTypes.func.isRequired,
+	onFilterStringsSelect: PropTypes.func.isRequired,
+	availableStrings: PropTypes.object.isRequired,
+};
 
 export default Filter;
 

@@ -1,41 +1,48 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {withPagination} from '../hocs/with-pagination';
 
 const Pagination = (props) => {
-	const {onPageChange, page, pagesLength} = props;
-	console.log(page)
-  return (
+	const {onPageChange, page, pagesLength, getPaginationValues} = props;
+	console.log(page, pagesLength, getPaginationValues)
+	return (
 		<ol className="pagination">
 
 			{page !== 1 && (
-				<li className="pagination__page pagination__page--next" value={page - 1}>Назад</li>
-			)}
+				<li key="pre" className="pagination__page pagination__page--next" value={page - 1} onClick={onPageChange}>Назад</li>
+				)}
 
-			<li className={`pagination__page ${page === 1 ? `pagination__page--active` : ``}`} value="1" onClick={onPageChange}>1</li>
+			{
+				getPaginationValues().map((value, i) => {
+					return <li
+						key={i}
+						tabIndex="0"
+						className={`pagination__page ${page === +value ? `pagination__page--active` : ``}${value === `…` ? `pagination__page--disabled` : ``}`}
+						value={value}
+						onClick={(evt) => {
+							if (value !== `…`) {
+								onPageChange(evt);
+							}
+						}}
+						>
+							{value}
+					</li>
+				})
+			}
 
-			{page === 1 && (
-				<li className="pagination__page" value="2">2</li>
-			)}
-
-			<li className="pagination__page" disabled={`disabled`} >…</li>
-
-			<li className="pagination__page" value={page}>{page}</li>
-
-			<li className="pagination__page" disabled>…</li>
-
-
-			{page === pagesLength && (
-				<li className="pagination__page" value={pagesLength - 1}>{pagesLength - 1}</li>
-			)}
-
-			<li className="pagination__page" value={pagesLength}>{pagesLength}</li>
-
-			{page !== pagesLength && (
-				<li className="pagination__page pagination__page--next" value={page + 1}>Далее</li>
+			{page !== pagesLength && pagesLength.pagesLength !== 1 && (
+				<li key="next" className="pagination__page pagination__page--next" value={page + 1} onClick={onPageChange}>Далее</li>
 			)}
 
 		</ol>
-  )
+	)
 }
+
+Pagination.propTypes = {
+	onPageChange: PropTypes.func.isRequired,
+	page: PropTypes.number.isRequired,
+	pagesLength: PropTypes.number.isRequired,
+	pagesValues: PropTypes.array.isRequired,
+};
 
 export default withPagination(Pagination);

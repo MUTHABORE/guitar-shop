@@ -1,10 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import Logo from './Logo';
 
-const Header = () => {
-  return (
+const Header = ({guitars}) => {
+
+	let items = 0;
+
+	Object.keys(guitars).map((item) => {
+		items += +guitars[item];
+	})
+
+	return (
 		<header className="header">
 			<h1 className="visually-hidden">Guitar-Shop. Гитары на любой вкус!</h1>
 			<section className="header__menu center">
@@ -43,14 +52,25 @@ const Header = () => {
 						<Link className="user-menu__link" to="/basket" aria-label="Корзина">
 							<span className="user-menu__link-icon user-menu__link-icon--basket"></span>
 						</Link>
-						<small className="user-menu__goods">2</small>
+						<small
+						className="user-menu__goods">
+							{+items === 0 ? `` : items}
+						</small>
 					</li>
 				</ul>
 
 			</section>
 		</header>
-  )
+	)
 }
 
-export default Header;
+Header.propTypes = {
+	guitars: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = ({guitars}) => ({
+	guitars,
+});
+
+export default connect(mapStateToProps, )(Header);
 

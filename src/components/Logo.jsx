@@ -1,11 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Logo = (props) => {
-  return (
-		<a className={props.type === `footer` ? `logo logo--footer` : `logo`} href="#top">
+	const {type} = props;
+	return (
+		<a className={type === `footer` ? `logo logo--footer` : `logo`} href="#top">
 			<span className="visually-hidden">Логотип Guitar-Shop</span>
 		</a>
-  )
+	)
 }
+
+Logo.propTypes = {
+	type: PropTypes.string,
+};
 
 export default Logo;

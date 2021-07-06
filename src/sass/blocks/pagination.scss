@@ -43,4 +43,16 @@
 		background-color: #585757;
 		color: #FFFFFF;
 	}
+
+	&--disabled {
+		cursor: not-allowed;
+		&:hover {
+			background-color: transparent;
+		}
+
+		&:active {
+			background-color: transparent;
+			color: #000;
+		}
+	}
 }
