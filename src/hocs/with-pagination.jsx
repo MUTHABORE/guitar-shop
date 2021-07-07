@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
-import {MAX_PAGE_GUITARS} from '../const';
+import {MAX_PAGE_GUITARS, INTERMEDIATE_PAGINATION_VALUE, AMOUNT_SIDE_ACTIVE_PAGE_BUTTONS} from '../const';
 
 export const withPagination = (Component) => {
 	class WithPagination extends PureComponent {
@@ -10,40 +10,38 @@ export const withPagination = (Component) => {
 
 			this.guitarsLength = Math.ceil(this.props.guitars.length / MAX_PAGE_GUITARS);
 
-			this.state = {
-			};
-
 			this.getPaginationValues = this.getPaginationValues.bind(this);
 		}
 
 		getPaginationValues() {
-			// console.log(this.guitarsLength);
 			let values = [];
+			this.guitarsLength = Math.ceil(this.props.guitars.length / MAX_PAGE_GUITARS);
 			
-			values[0] = `1`;
+			values.push(`1`);
 			
-			if (this.props.page > 2 & this.props.page - 1 !== 2) {
+			if (this.props.page > INTERMEDIATE_PAGINATION_VALUE) {
 				values.push(`…`);
 			}
 			
-			for(let i = this.props.page - 1; i < this.props.page + 2; i++) {
+			for(let i = this.props.page - AMOUNT_SIDE_ACTIVE_PAGE_BUTTONS; i <= this.props.page + AMOUNT_SIDE_ACTIVE_PAGE_BUTTONS; i++) {
 				if (i > 1 && i < this.guitarsLength) {
 					values.push(i.toString());
 				}
 			}
 			
-			if (this.props.page < this.guitarsLength - 1) {
+			if (this.props.page < this.guitarsLength - INTERMEDIATE_PAGINATION_VALUE) {
 				values.push(`…`);
 			}
 			
 			values.push(this.guitarsLength.toString());
-			
-			// console.log(values)
+
+			values = Array.from(new Set(values))
 
 			return values;
 		}
 
 		render() {
+			this.guitarsLength = Math.ceil(this.props.guitars.length / MAX_PAGE_GUITARS);
 			return(
 				<Component
 					page={this.props.page}

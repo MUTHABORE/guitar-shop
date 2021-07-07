@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import {withPagination} from '../hocs/with-pagination';
 
 const Pagination = (props) => {
 	const {onPageChange, page, pagesLength, getPaginationValues} = props;
-	// console.log(page, pagesLength, getPaginationValues)
 	return (
 		<ol className="pagination">
 
-			{page !== 1 && (
+			{page > 1 && (
 				<li key="pre" className="pagination__page pagination__page--next" value={page - 1} onClick={onPageChange}>Назад</li>
 				)}
 
@@ -30,7 +30,7 @@ const Pagination = (props) => {
 				})
 			}
 
-			{page !== pagesLength && pagesLength.pagesLength !== 1 && (
+			{page < pagesLength && (
 				<li key="next" className="pagination__page pagination__page--next" value={page + 1} onClick={onPageChange}>Далее</li>
 			)}
 
