@@ -16,46 +16,56 @@ export const withPagination = (Component) => {
 			this.getPaginationValues = this.getPaginationValues.bind(this);
 		}
 
-	getPaginationValues() {
-		console.log(this.guitarsLength);
-		let values = [];
-		
-		values[0] = `1`;
-		
-		if (this.props.page > 2 & this.props.page - 1 !== 2) {
-			values.push(`…`);
-		}
-		
-		for(let i = this.props.page - 1; i < this.props.page + 2; i++) {
-			if (i > 1 && i < this.guitarsLength) {
-				values.push(i.toString());
+		getPaginationValues() {
+			// console.log(this.guitarsLength);
+			let values = [];
+			
+			values[0] = `1`;
+			
+			if (this.props.page > 2 & this.props.page - 1 !== 2) {
+				values.push(`…`);
 			}
-		}
-		
-		if (this.props.page < this.guitarsLength - 1) {
-			values.push(`…`);
-		}
-		
-		values.push(this.guitarsLength.toString());
-		
-		console.log(values)
+			
+			for(let i = this.props.page - 1; i < this.props.page + 2; i++) {
+				if (i > 1 && i < this.guitarsLength) {
+					values.push(i.toString());
+				}
+			}
+			
+			if (this.props.page < this.guitarsLength - 1) {
+				values.push(`…`);
+			}
+			
+			values.push(this.guitarsLength.toString());
+			
+			// console.log(values)
 
-		return values;
-	}
+			return values;
+		}
 
-	render() {
-		return(
-			<Component
-				page={this.props.page}
-				onPageChange={this.props.onPageChange}
-				pagesLength={this.guitarsLength}
-				getPaginationValues={this.getPaginationValues}
-			/>
+		render() {
+			return(
+				<Component
+					page={this.props.page}
+					onPageChange={this.props.onPageChange}
+					pagesLength={this.guitarsLength}
+					getPaginationValues={this.getPaginationValues}
+				/>
 		)}
 	}
 
 	WithPagination.propTypes = {
-		guitars: PropTypes.array.isRequired,
+		guitars: PropTypes.arrayOf(
+			PropTypes.shape({
+				name: PropTypes.string.isRequired,
+				type: PropTypes.string.isRequired,
+				strings: PropTypes.number.isRequired,
+				article: PropTypes.string.isRequired,
+				price: PropTypes.number.isRequired,
+				rating: PropTypes.number.isRequired,
+				reviews: PropTypes.number.isRequired,
+			})
+		).isRequired,
 		onPageChange: PropTypes.func.isRequired,
 		page: PropTypes.number.isRequired,
 	};

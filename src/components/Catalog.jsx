@@ -50,8 +50,28 @@ const Catalog = (props) => {
 }
 
 Catalog.propTypes = {
-	guitarsToView: PropTypes.array.isRequired,
-	filteredGuitars: PropTypes.array.isRequired,
+	guitarsToView: PropTypes.arrayOf(
+		PropTypes.shape({
+			name: PropTypes.string.isRequired,
+			type: PropTypes.string.isRequired,
+			strings: PropTypes.number.isRequired,
+			article: PropTypes.string.isRequired,
+			price: PropTypes.number.isRequired,
+			rating: PropTypes.number.isRequired,
+			reviews: PropTypes.number.isRequired,
+		})
+	).isRequired,
+	filteredGuitars: PropTypes.arrayOf(
+		PropTypes.shape({
+			name: PropTypes.string.isRequired,
+			type: PropTypes.string.isRequired,
+			strings: PropTypes.number.isRequired,
+			article: PropTypes.string.isRequired,
+			price: PropTypes.number.isRequired,
+			rating: PropTypes.number.isRequired,
+			reviews: PropTypes.number.isRequired,
+		})
+	).isRequired,
 	page: PropTypes.number.isRequired,
 	onPageChange: PropTypes.func.isRequired,
 	minPrice: PropTypes.number,

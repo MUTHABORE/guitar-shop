@@ -4,7 +4,7 @@ import {withPagination} from '../hocs/with-pagination';
 
 const Pagination = (props) => {
 	const {onPageChange, page, pagesLength, getPaginationValues} = props;
-	console.log(page, pagesLength, getPaginationValues)
+	// console.log(page, pagesLength, getPaginationValues)
 	return (
 		<ol className="pagination">
 
@@ -42,7 +42,7 @@ Pagination.propTypes = {
 	onPageChange: PropTypes.func.isRequired,
 	page: PropTypes.number.isRequired,
 	pagesLength: PropTypes.number.isRequired,
-	pagesValues: PropTypes.array.isRequired,
+	getPaginationValues: PropTypes.func.isRequired,
 };
 
 export default withPagination(Pagination);
