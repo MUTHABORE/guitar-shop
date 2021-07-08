@@ -17,10 +17,10 @@ const Sort = (props) => {
 				</label>
 			</div>
 			<div className="sort__direction">
-				<label className={`sort__direction-arrow sort__direction-arrow--up${sortDirection === `up` ? ` sort__direction-arrow--active` : ``}`}>
+				<label className={`sort__direction-arrow sort__direction-arrow--up${sortDirection === `up` ? ` sort__direction-arrow--active` : ``}`} aria-label="Выбрать направление сортировки - к большему" >
 					<input className="visually-hidden" value="up" type="radio" name="sort-type" onChange={onGuitarsSortDirectionChange} />
 				</label>
-				<label className={`sort__direction-arrow${sortDirection === `down` ? ` sort__direction-arrow--active` : ``}`}>
+				<label className={`sort__direction-arrow${sortDirection === `down` ? ` sort__direction-arrow--active` : ``}`} aria-label="Выбрать направление сортировки - к меньшему">
 					<input className="visually-hidden" value="down" type="radio" name="sort-type" onChange={onGuitarsSortDirectionChange} />
 				</label>
 			</div>

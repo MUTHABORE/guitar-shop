@@ -5,7 +5,7 @@ const Card = (props) => {
 	const {guitar, onPopupOpenClick} = props;
 	return (
 		<li className="card">
-			<img className="card__img" src={`./images/${guitar.type}.png`} alt={`Фотография ${guitar.name}`} />
+			<img className={`card__img card__img--${guitar.type}`} src={`./images/${guitar.type}.png`} alt={`Фотография ${guitar.name}`} />
 			<div className="card__rating">
 				<ol className="card__stars-rating">
 					<li className="card__star"></li>

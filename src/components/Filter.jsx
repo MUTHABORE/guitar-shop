@@ -11,8 +11,13 @@ const Filter = (props) => {
 			<li className="filter__item">
 				<h4 className="filter__type-title">Цена, ₽</h4>
 				<div className="filter__price">
-					<input className="filter__price-input filter__price-input--min" value={filterMinPrice} name="min" type="number" required onChange={onGuitarsFilterMinPriceChange} onBlur={onFilterMinPriceBlur} />
-					<input className="filter__price-input filter__price-input--max" value={filterMaxPrice} name="max" type="number" required onChange={onGuitarsFilterMaxPriceChange} onBlur={onFilterMaxPriceBlur} />
+
+					<label className="visually-hidden" htmlFor="price-input-min" aria-label="Поле для ввода минимальной цены"></label>
+					<input id="price-input-min" className="filter__price-input filter__price-input--min" value={filterMinPrice} name="min" type="number" required onChange={onGuitarsFilterMinPriceChange} onBlur={onFilterMinPriceBlur} />
+
+					<label className="visually-hidden" htmlFor="price-input-max" aria-label="Поле для ввода максимальной цены"></label>
+					<input id="price-input-max" className="filter__price-input filter__price-input--max" value={filterMaxPrice} name="max" type="number" required onChange={onGuitarsFilterMaxPriceChange} onBlur={onFilterMaxPriceBlur} />
+				
 				</div>
 			</li>
 			<li className="filter__item">
@@ -62,8 +67,8 @@ const Filter = (props) => {
 				</ul>
 			</li>
 			<li className="filter__item">
+				<h4 className="filter__type-title">Количество струн</h4>
 				<ul className="filter__strings">
-					<h4 className="filter__type-title">Количество струн</h4>
 
 					<li>
 						<label>

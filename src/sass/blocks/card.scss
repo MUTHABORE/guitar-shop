@@ -16,8 +16,16 @@
 .card__img {
 	display: block;
 	margin: 0 auto;
-	width: 80px;
-	height: 202px;
+	width: 68px;
+	height: 190px;
+	margin-top: 4px;
+	margin-bottom: 8px;
+
+	&--electro {
+		margin: 0 auto;
+		width: 80px;
+		height: 202px;
+	}
 }
 
 .card__rating {
