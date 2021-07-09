@@ -113,10 +113,14 @@ export const withCatalog = (Component) => {
 					return false;
 				}
 				if (this.state.filter.type.size !== 0) {
-					return this.state.filter.type.has(guitar.type);
+					if (!this.state.filter.type.has(guitar.type)) {
+						return false;
+					}
 				}
 				if (this.state.filter.strings.size !== 0) {
-					return this.state.filter.strings.has(guitar.strings.toString());
+					if (!this.state.filter.strings.has(guitar.strings.toString())) {
+						return false;
+					}
 				}
 				return true;
 			});
@@ -189,7 +193,7 @@ export const withCatalog = (Component) => {
 		onFilterTypeSelect(evt) {
 			const target = evt.target;
 			let selectedTypes = new Set(this.state.filter.type);
-
+			
 			if (selectedTypes.has(target.value)) {
 				selectedTypes.delete(target.value);
 				this.setState({filter: Object.assign(
@@ -265,10 +269,9 @@ export const withCatalog = (Component) => {
 		}
 
 		onClosePopupKeydown(evt) {
-			document.removeEventListener(`keydown`, this.onClosePopupKeydown);
-			document.documentElement.style.overflow = `auto`;
-
 			if (evt.key === `Escape`) {
+				document.removeEventListener(`keydown`, this.onClosePopupKeydown);
+				document.documentElement.style.overflow = `auto`;
 				this.setState({
 					isPopupSuccessOpen: false,
 					isPopupOpen: false,

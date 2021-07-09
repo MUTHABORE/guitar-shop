@@ -18,7 +18,7 @@ const Card = (props) => {
 			</div>
 			<div className="card__info">
 				<p className="card__info-text">{guitar.name}</p>
-				<p className="card__info-text">{`${guitar.price} ₽`}</p>
+				<p className="card__info-text card__info-text--price">{`${guitar.price.toLocaleString()} ₽`}</p>
 			</div>
 			<div className="card__options">
 				<a href="#top" className="card__button" type="button">Подробнее</a>

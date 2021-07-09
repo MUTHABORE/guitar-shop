@@ -10,8 +10,8 @@ const Popup = (props) => {
 		<section className="popup__overlay" onClick={onClosePopup}>
 			{
 				!isPopupSuccessOpen && (
-					<div className="popup popup--card" onClick={(evt) => {evt.stopPropagation()}}>
-						<button className="popup__button-cross" onClick={onClosePopup}></button>
+					<div className="popup popup--card" onClick={(evt) => {evt.stopPropagation()}} >
+						<button className="popup__button-cross" onClick={onClosePopup} tabIndex="0" autoFocus={true}></button>
 						<p className="popup__title">Добавить товар в корзину</p>
 
 						<img className="popup__guitar-img" src={`./images/${guitar.type}.png`} alt="Фотография гитары" />
@@ -20,10 +20,10 @@ const Popup = (props) => {
 							<p className="popup__guitar-title">{guitar.name}</p>
 							<p className="popup__guitar-article">{`Артикул: ${guitar.article}`}</p>
 							<p className="popup__guitar-strings">{`${typeOfGuitars[guitar.type]}, ${guitar.strings} струнная`}</p>
-							<p className="popup__guitar-price">{`Цена: ${guitar.price} ₽`}</p>
+							<p className="popup__guitar-price">{`Цена: ${guitar.price.toLocaleString()} ₽`}</p>
 						</div>
 
-						<button className="popup__button-add" type="button" onClick={(evt) => {onAddToBasketClick(evt, guitar.article)}}>Добавить в корзину</button>
+						<button className="popup__button-add" type="button" onClick={(evt) => {onAddToBasketClick(evt, guitar.article)}} tabIndex="0">Добавить в корзину</button>
 					</div>
 				)
 			}

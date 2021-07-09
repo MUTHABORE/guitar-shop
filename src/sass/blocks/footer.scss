@@ -173,8 +173,17 @@
 	background-repeat: no-repeat;
 
 	&--phone {
+		color: #fff;
 		background-position-y: 2px;
-		background-image: url("../../images/vector/phone.svg")
+		background-image: url("../../images/vector/phone.svg");
+
+		&:hover {
+			color: #bebebe;
+		}
+
+		&:active {
+			color: rgba(170, 170, 170, 0.5);
+		}
 	}
 
 	&--watch {

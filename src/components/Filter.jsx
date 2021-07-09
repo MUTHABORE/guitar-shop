@@ -26,8 +26,9 @@ const Filter = (props) => {
 				<ul className="filter__guitar-types">
 
 					<li>
-						<label>
+						<label tabIndex="0" onKeyDown={(evt) =>{evt.key === `Enter` && evt.currentTarget.click();}}>
 							<input
+								tabIndex="-1"
 								className="filter__checkbox-input visually-hidden"
 								value="acoustic"
 								type="checkbox"
@@ -39,8 +40,9 @@ const Filter = (props) => {
 					</li>
 
 					<li>
-						<label>
+						<label tabIndex="0" onKeyDown={(evt) =>{evt.key === `Enter` && evt.currentTarget.click();}}>
 							<input
+								tabIndex="-1"
 								className="filter__checkbox-input visually-hidden"
 								value="electro"
 								type="checkbox"
@@ -52,8 +54,9 @@ const Filter = (props) => {
 					</li>
 
 					<li>
-						<label>
+						<label tabIndex="0" onKeyDown={(evt) =>{evt.key === `Enter` && evt.currentTarget.click();}}>
 							<input
+							tabIndex="-1"
 								className="filter__checkbox-input visually-hidden"
 								value="ukulele"
 								type="checkbox"
@@ -71,8 +74,9 @@ const Filter = (props) => {
 				<ul className="filter__strings">
 
 					<li>
-						<label>
+						<label tabIndex="0" onKeyDown={(evt) =>{evt.key === `Enter` && evt.currentTarget.click();}}>
 							<input
+								tabIndex="-1"
 								disabled={availableStrings.has(`4`) ? `` : `disabled`}
 								className="filter__checkbox-input visually-hidden"
 								type="checkbox"
@@ -85,8 +89,9 @@ const Filter = (props) => {
 					</li>
 
 					<li>
-						<label>
+						<label tabIndex="0" onKeyDown={(evt) =>{evt.key === `Enter` && evt.currentTarget.click();}}>
 							<input
+								tabIndex="-1"
 								disabled={availableStrings.has(`6`) ? `` : `disabled`}
 								className="filter__checkbox-input visually-hidden"
 								type="checkbox"
@@ -99,8 +104,9 @@ const Filter = (props) => {
 					</li>
 
 					<li>
-						<label>
+						<label tabIndex="0" onKeyDown={(evt) =>{evt.key === `Enter` && evt.currentTarget.click();}}>
 							<input
+								tabIndex="-1"
 								disabled={availableStrings.has(`7`) ? `` : `disabled`}
 								className="filter__checkbox-input visually-hidden"
 								type="checkbox"
@@ -113,8 +119,9 @@ const Filter = (props) => {
 					</li>
 
 					<li>
-						<label>
+						<label tabIndex="0" onKeyDown={(evt) =>{evt.key === `Enter` && evt.currentTarget.click();}}>
 							<input
+								tabIndex="-1"
 								disabled={availableStrings.has(`12`) ? `` : `disabled`}
 								className="filter__checkbox-input visually-hidden"
 								type="checkbox"

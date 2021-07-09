@@ -33,7 +33,7 @@ export const withPagination = (Component) => {
 				values.push(`…`);
 			}
 			
-			values.push(this.guitarsLength.toString());
+			this.guitarsLength >= 1 && values.push(this.guitarsLength.toString());
 
 			values = Array.from(new Set(values))
 

@@ -87,7 +87,7 @@ const Footer = () => {
 							г. Санкт-Петербург,<br></br>
 							м. Невский проспект,<br></br>
 							ул. Казанская 6. <br></br>
-							<span className="footer-menu__text-icon footer-menu__text-icon--phone">8-812-500-50-50</span>
+							<a className="footer-menu__text-icon footer-menu__text-icon--phone"  href="tel:+78125005050" >8-812-500-50-50</a>
 						</p>
 						<p className="footer-menu__contacts-text">
 							Режим работы:<br></br>

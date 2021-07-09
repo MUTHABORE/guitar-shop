@@ -6,7 +6,7 @@ const PopupBasket = ({guitar, onPopupClose, deleteGuitar}) => {
 	return (
 		<section className="popup-basket__overlay" onClick={onPopupClose}>
 			<div className="popup-basket" onClick={(evt) => {evt.stopPropagation()}}>
-				<button className="popup-basket__button-cross" onClick={onPopupClose}></button>
+				<button className="popup-basket__button-cross" onClick={onPopupClose} autoFocus={true}></button>
 				<p className="popup-basket__title">Удалить этот товар? </p>
 
 				<img className="popup-basket__guitar-img" src={`./images/${guitar.type}.png`} alt="Фотография гитары" />
@@ -15,7 +15,7 @@ const PopupBasket = ({guitar, onPopupClose, deleteGuitar}) => {
 					<p className="popup-basket__guitar-title">{`Гитара ${guitar.name}`}</p>
 					<p className="popup-basket__guitar-article">{`Артикул: ${guitar.article}`}</p>
 					<p className="popup-basket__guitar-strings">{`${typeOfGuitars[guitar.type]}, ${guitar.strings} струнная`}</p>
-					<p className="popup-basket__guitar-price">{`Цена: ${guitar.price} ₽`}</p>
+					<p className="popup-basket__guitar-price">{`Цена: ${guitar.price.toLocaleString()} ₽`}</p>
 				</div>
 
 				<div className="popup-basket__controls">

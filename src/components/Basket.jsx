@@ -53,7 +53,7 @@ const Basket = ({basketGuitars, deleteGuitar, isPopupOpen, onPopupOpen, onPopupC
 											<p className="basket__item-text">{`${typeOfGuitars[currentGuitar.type]}, ${currentGuitar.strings} струнная `}</p>
 										</div>
 										<div className="basket__item-price">
-											<p className="basket__item-price-one">{`${currentGuitar.price} ₽`}</p>
+											<p className="basket__item-price-one">{`${currentGuitar.price.toLocaleString()} ₽`}</p>
 											<div className="basket__item-amount-controls">
 												<button
 													className="basket__button-amount-change basket__button-amount-change--down"
@@ -73,7 +73,7 @@ const Basket = ({basketGuitars, deleteGuitar, isPopupOpen, onPopupOpen, onPopupC
 												}}
 												>+</button>
 											</div>
-											<p className="basket__item-price-total">{`${+currentGuitar.price * basketGuitars[article]} ₽`}</p>
+											<p className="basket__item-price-total">{`${(+currentGuitar.price * basketGuitars[article]).toLocaleString()} ₽`}</p>
 										</div>
 									</li>
 								)
@@ -86,11 +86,11 @@ const Basket = ({basketGuitars, deleteGuitar, isPopupOpen, onPopupOpen, onPopupC
 				<div className="basket__promocode">
 					<p className="basket__promocode-title">Промокод на скидку</p>
 					<p className="basket__promocode-info">Введите свой промокод, если он у вас есть.</p>
-					<input ref={promocodeInputRef} className="basket__promocode-input" type="text" placeholder="GITARAHIT" />
+					<input ref={promocodeInputRef} className="basket__promocode-input" type="text" />
 					<button className="basket__promocode-button" type="button" onClick={onApplyPromocodeClick} >Применить купон</button>
 				</div>
 				<div className="basket__total-price">
-					<p className="basket__total-price-amount">{`Всего: ${getFullPrice(allGuitarsCoast) < 0 ? 0 : getFullPrice(allGuitarsCoast)} ₽ `}</p>
+					<p className="basket__total-price-amount">{`Всего: ${getFullPrice(allGuitarsCoast) < 0 ? 0 : getFullPrice(allGuitarsCoast).toLocaleString()} ₽ `}</p>
 					<button className="basket__total-price-submit" type="button">Оформить заказ</button>
 				</div>
 			</div>

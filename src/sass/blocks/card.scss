@@ -78,6 +78,10 @@
 
 .card__info-text {
 	margin: 4px 0;
+
+	&--price {
+		flex-shrink: 0;
+	}
 }
 
 .card__options {

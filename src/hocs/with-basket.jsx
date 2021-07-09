@@ -50,10 +50,9 @@ export const withBasket = (Component) => {
 
 		
 		onClosePopupKeydown(evt) {
-			document.removeEventListener(`keydown`, this.onClosePopupKeydown);
-			document.documentElement.style.overflow = `auto`;
-
 			if (evt.key === `Escape`) {
+				document.removeEventListener(`keydown`, this.onClosePopupKeydown);
+				document.documentElement.style.overflow = `auto`;
 				this.setState({
 					isPopupOpen: false,
 				})
