@@ -84,10 +84,11 @@ const Basket = ({basketGuitars, deleteGuitar, isPopupOpen, onPopupOpen, onPopupC
 
 			<div className="basket__total">
 				<div className="basket__promocode">
-					<p className="basket__promocode-title">Промокод на скидку</p>
-					<p className="basket__promocode-info">Введите свой промокод, если он у вас есть.</p>
-					<input ref={promocodeInputRef} className="basket__promocode-input" type="text" />
-					<button className="basket__promocode-button" type="button" onClick={onApplyPromocodeClick} >Применить купон</button>
+					<label className="basket__promocode-title">Промокод на скидку
+						<p className="basket__promocode-info">Введите свой промокод, если он у вас есть.</p>
+						<input ref={promocodeInputRef} className="basket__promocode-input" type="text" />
+						<button className="basket__promocode-button" type="button" onClick={onApplyPromocodeClick} >Применить купон</button>
+					</label>
 				</div>
 				<div className="basket__total-price">
 					<p className="basket__total-price-amount">{`Всего: ${getFullPrice(allGuitarsCoast) < 0 ? 0 : getFullPrice(allGuitarsCoast).toLocaleString()} ₽ `}</p>
